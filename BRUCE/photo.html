@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHOTO WORKS</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+nav{
+    background:#000;
+    padding:22px;
+    text-align:center;
+    border-bottom:1px solid #222;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 25px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+h1{
+    text-align:center;
+    padding:45px 20px 20px;
+    letter-spacing:4px;
+}
+
+.gallery{
+    max-width:1100px;
+    margin:0 auto 90px;
+    padding:20px;
+    position:relative;
+}
+
+.play-btn{
+    position:absolute;
+    top:34px;
+    left:34px;
+    background:rgba(0,0,0,.55);
+    color:white;
+    padding:7px 12px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:5;
+}
+
+.main-photo{
+    width:100%;
+    max-height:620px;
+    object-fit:contain;
+    display:block;
+    margin:auto;
+    background:#000;
+}
+
+.thumbs{
+    display:flex;
+    gap:6px;
+    margin-top:14px;
+    overflow-x:auto;
+    padding-bottom:8px;
+}
+
+.thumbs img{
+    width:62px;
+    height:62px;
+    object-fit:cover;
+    cursor:pointer;
+    opacity:.55;
+    transition:.2s;
+}
+
+.thumbs img:hover,
+.thumbs img.active{
+    opacity:1;
+}
+
+.back{
+    text-align:center;
+    padding:50px;
+}
+
+.back a{
+    background:white;
+    color:black;
+    padding:14px 30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">HOME｜主頁</a>
+    <a href="video.html">VIDEO｜動態影片</a>
+    <a href="photo.html">PHOTO｜平面作品</a>
+</nav>
+
+<h1>PHOTO WORKS</h1>
+
+<!-- 第一組作品 -->
+<div class="gallery">
+    <div class="play-btn">Play ▶</div>
+
+    <img class="main-photo" src="images/10.jpg">
+
+    <div class="thumbs">
+        <img src="images/10.jpg" class="active">
+        <img src="images/11.jpg">
+        <img src="images/12.jpg">
+        <img src="images/13.jpg">
+        <img src="images/14.jpg">
+        <img src="images/15.jpg">
+        <img src="images/16.jpg">
+        <img src="images/17.jpg">
+        <img src="images/18.jpg">
+    </div>
+</div>
+
+<!-- 第二組作品 -->
+<div class="gallery">
+    <div class="play-btn">Play ▶</div>
+
+    <img class="main-photo" src="images/19.jpg">
+
+    <div class="thumbs">
+        <img src="images/19.jpg" class="active">
+        <img src="images/20.jpg">
+        <img src="images/21.jpg">
+        <img src="images/22.jpg">
+        <img src="images/23.jpg">
+        <img src="images/25.jpg">
+        <img src="images/26.jpg">
+        <img src="images/27.jpg">
+        <img src="images/28.jpg">
+        <img src="images/29.jpg">
+        <img src="images/30.jpg">
+        <img src="images/31.jpg">
+        <img src="images/24.jpg">
+    </div>
+</div>
+
+<!-- 第三組作品 -->
+<div class="gallery">
+    <div class="play-btn">Play ▶</div>
+
+    <img class="main-photo" src="images/32.jpg">
+
+    <div class="thumbs">
+        <img src="images/32.jpg" class="active">
+        <img src="images/33.jpg">
+        <img src="images/34.jpg">
+        <img src="images/35.jpg">
+        <img src="images/36.jpg">
+        <img src="images/37.jpg">
+        <img src="images/38.jpg">
+        <img src="images/39.jpg">
+        <img src="images/40.jpg">
+        <img src="images/41.jpg">
+        <img src="images/42.jpg">
+
+    </div>
+</div>
+
+<!-- 第四組作品 -->
+<div class="gallery">
+    <div class="play-btn">Play ▶</div>
+
+    <img class="main-photo" src="images/43.jpg">
+
+    <div class="thumbs">
+        <img src="images/43.jpg" class="active">
+        <img src="images/44.jpg">
+        <img src="images/45.jpg">
+        <img src="images/46.jpg">
+        <img src="images/47.jpg">
+        <img src="images/48.jpg">
+        <img src="images/49.jpg">
+        <img src="images/50.jpg">
+        <img src="images/51.jpg">
+        <img src="images/52.jpg">
+        <img src="images/53.jpg">
+        <img src="images/54.jpg">
+        <img src="images/55.jpg">
+        <img src="images/56.jpg">
+        <img src="images/57.jpg">
+    </div>
+</div>
+
+<div class="back">
+    <a href="index.html">BACK HOME</a>
+</div>
+
+<script>
+document.querySelectorAll(".gallery").forEach(function(gallery){
+
+    const mainPhoto = gallery.querySelector(".main-photo");
+    const thumbs = gallery.querySelectorAll(".thumbs img");
+    const playBtn = gallery.querySelector(".play-btn");
+
+    let index = 0;
+    let playing = false;
+    let timer = null;
+
+    function showPhoto(i){
+        thumbs.forEach(function(t){
+            t.classList.remove("active");
+        });
+
+        thumbs[i].classList.add("active");
+        mainPhoto.src = thumbs[i].src;
+        index = i;
+    }
+
+    thumbs.forEach(function(thumb, i){
+        thumb.addEventListener("click", function(){
+            showPhoto(i);
+        });
+    });
+
+    playBtn.addEventListener("click", function(){
+        if(!playing){
+            playing = true;
+            playBtn.innerHTML = "Pause ❚❚";
+
+            timer = setInterval(function(){
+                index = (index + 1) % thumbs.length;
+                showPhoto(index);
+            }, 3000);
+
+        }else{
+            playing = false;
+            playBtn.innerHTML = "Play ▶";
+            clearInterval(timer);
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
